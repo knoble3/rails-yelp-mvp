@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <p id="notice"><%= notice %></p>
+
+      <p>
+        <strong>Name:</strong>
+        <%= @restaurant.name %>
+      </p>
+
+      <p>
+        <strong>Address:</strong>
+        <%= @restaurant.address %>
+      </p>
+
+      <p>
+        <strong>Phone Number:</strong>
+        <%= @restaurant.phone_number %>
+      </p>
+
+      <p>
+        <strong>Category:</strong>
+        <%= @restaurant.category %>
+      </p>
+
+      <% if @reviews.empty? %>
+        <h2>No Reviews</h2>
+      <% else %>
+        <% @reviews.each do |review| %>
+        <p><%= review.content %> --- <%= review.rating %> / 5</p>
+        <%= link_to "Destroy", review_path(review), method: :delete %>
+        <% end %>
+      <% end %>
+
+      <br>
+
+      <%= link_to 'Write a Review', new_restaurant_review_path(@restaurant.id) %> /
+      <%= link_to 'Edit Restaurant', edit_restaurant_path(@restaurant) %> /
+      <%= link_to 'Back to List', restaurants_path %>
+    </div>
+  </div>
+</div>
